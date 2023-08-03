@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { validUser } from '../../api/api';
+import { validUser } from '../api/api';
 import './Login.css';
 
 const Login = ({ setUserLogged }) => {

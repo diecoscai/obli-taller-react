@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 //Estado inicial del slice
 const initialState = {
     userLogged: null,
-    userRegistered: null,
+    userRegistered: [],
 }
 
 export const userSlice = createSlice({
@@ -14,8 +14,10 @@ export const userSlice = createSlice({
         setUserLogged: (state, action) => {
             state.userLogged = action.payload;
         },
-        setUserRegistered: (state, action) => {
-            state.userRegistered = action.payload;
+        onAddUser: (state, action) => {
+            const { payload } = action;
+            console.log('Payload:' + payload);
+            state.userRegistered = [...state.userRegistered, payload];
         },
     }
 });
