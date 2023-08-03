@@ -1,8 +1,9 @@
 import { Box, Typography, TextField, Button, Snackbar, Alert } from '@mui/material'
 import { createTheme, ThemeProvider, } from '@mui/material/styles';
-import { fetchRegister } from '../../api/censoAPI'
-import { useDispatch , useSelector} from 'react-redux'
+import { fetchRegister } from '../../../../api/censoAPI'
+import { useDispatch, useSelector } from 'react-redux'
 import { useRef } from 'react';
+import logo from '../../../../logo.png';
 
 const RegisterFrom = () => {
     //Variables and States
@@ -73,9 +74,23 @@ const RegisterFrom = () => {
                                 boxShadow: '5px 5px 10px #aaa'
                             }
                         }}>
+
+                        <img src={logo} width="70" height="70" alt="Logo" />
                         <Typography variant={"h4"} color={"primary"} align={"center"} >Sign Up:</Typography>
-                        <TextField margin='normal' type={'text'} variant='outlined' placeholder='Name' />
-                        <TextField margin='normal' type={'text'} variant='outlined' placeholder='Password' />
+                        <TextField
+                            margin='normal'
+                            type={'text'}
+                            variant='outlined'
+                            placeholder='Name'
+                            ref={inputUserName}
+                        />
+                        <TextField
+                            margin='normal'
+                            type={'text'}
+                            variant='outlined'
+                            placeholder='Password'
+                            ref={inputPassword}
+                        />
                         <Button
                             variant="contained"
                             color="yellowButton"

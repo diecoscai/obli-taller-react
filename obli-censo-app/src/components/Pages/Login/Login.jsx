@@ -4,11 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import LoginForm from './LoginForm';
 import logo from '../../../logo.png';
+import { Box, Typography, TextField, Button, Snackbar, Alert } from '@mui/material'
+import { createTheme, ThemeProvider, } from '@mui/material/styles';
 
 const Login = () => {
     const navigate = useNavigate();
     const user = useSelector((state) => state.user.userLogged);
-
     useEffect(() => {
         if (user) {
             navigate('/dashboard');
@@ -17,17 +18,28 @@ const Login = () => {
 
     return (
         <>
-            <section className="d-flex flex-md justify-content-center login">
-                <div className="card">
-                    <img src={logo} width="70" height="70" alt="Logo" />
-                    <h3>Censo</h3>
-                    <section className="card-body">
-                        <LoginForm />
-                        <br />
-                        <Link to={'/signup'}>No tienes cuenta?</Link>
-                    </section>
-                </div>
-            </section>
+            <Box
+                display='flex'
+                flexDirection={"column"}
+                maxWidth={400}
+                alignItems={"center"}
+                justifyContent={"center"}
+                margin="auto"
+                marginTop={25}
+                padding={3}
+                borderRadius={5}
+                boxShadow={'5px 5px 10px #ccc'}
+                minHeight="50vh"
+                sx={{
+                    ":hover": {
+                        boxShadow: '5px 5px 10px #aaa'
+                    }
+                }}>
+                <img src={logo} width="70" height="70" alt="Logo" />
+                <LoginForm />
+                <br />
+                <Link to={'/signup'}>No tienes cuenta?</Link>
+            </Box >
         </>
     );
 };

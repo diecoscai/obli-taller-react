@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { onLogin } from '../../../../app/slices/userSlices';
 import { fetchLogin } from '../../../../api/censoAPI';
-import { Button } from '@mui/material';
+import { Box, Typography, TextField, Button, Snackbar, Alert } from '@mui/material'
+import { createTheme, ThemeProvider, } from '@mui/material/styles';
+import logo from '../../../../logo.png';
 
 const LoginForm = () => {
     // const [message, setMessage] = useState('');
@@ -15,6 +17,16 @@ const LoginForm = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const { palette } = createTheme();
+    const { augmentColor } = palette;
+    const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
+    const theme = createTheme({
+        palette: {
+            yellowButton: createColor('#FFD25E'),
+        },
+    });
+
 
     const _onLogin = ({ apiKey, id }) => {
         dispatch(onLogin({ apiKey, id }));
@@ -56,26 +68,39 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="login-form">
-            <form>
-                <label htmlFor="txtUser">Usuario: </label>
-                <input
-                    className="form-control"
-                    type="text"
+        <>
+            <ThemeProvider theme={theme}>
+                <Typography variant={"h4"} color={"primary"} align={"center"} >Sign Up:</Typography>
+                <TextField
+                    margin='normal'
+                    type={'text'}
+                    variant='outlined'
+                    placeholder='Name'
                     id="txtUser"
                     ref={inputUserName}
-                    onChange={_onHandleChange}
-                />
-                <label htmlFor="txtPass">Contraseña: </label>
-                <input
-                    className="form-control"
-                    type="password"
+                    onChange={_onHandleChange} />
+                <TextField
+                    margin='normal'
+                    type={'text'}
+                    variant='outlined'
+                    placeholder='Password'
                     ref={inputPassword}
-                    onChange={_onHandleChange}
-                />
-                <Button variant="contained">Login</Button>
-            </form>
-        </div>
+                    onChange={_onHandleChange} />
+                <Button
+                    variant="contained"
+                    color="yellowButton"
+                    sx={{
+                        marginTop: 5,
+                        borderRadius: 2,
+                        boxShadow: '2px 2px 5px #ccc',
+                        fontWeight: 'bold',
+                        textShadow: '2px 2px 5px #555549',
+
+                    }}>
+                    <Typography variant={"p"} color={"white"} align={"center"}>Sign Up!</Typography>
+                </Button>
+            </ThemeProvider >
+        </>
     );
 };
 

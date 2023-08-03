@@ -1,6 +1,6 @@
 import './App.css';
 import Login from '../Pages/Login';
-// import Register from '../Pages/Register';
+import RegisterForm from '../Pages/Register/RegisterForm';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -20,6 +20,7 @@ function App() {
                 <Route path="/" element={<Login />} />
                 <Route path="/login" element={<Login />} />
             </Routes>
+        <RegisterForm></RegisterForm>
         </div>
     );
 }
