@@ -2,14 +2,13 @@ import { Box, Typography, TextField, Button, Snackbar, Alert } from '@mui/materi
 import { createTheme, ThemeProvider, } from '@mui/material/styles';
 import { fetchRegister } from '../../../../api/censoAPI'
 import { useDispatch, useSelector } from 'react-redux'
-import { useRef } from 'react';
+import { useState } from 'react';
 import logo from '../../../../logo.png';
 
 const RegisterFrom = () => {
     //Variables and States
-    const inputUserName = useRef();
-    const inputPassword = useRef();
-    const dispatch = useDispatch();
+    const [user, setUser] = useState('');
+    const [password, setPassword] = useState('');
     //Color for signUp button
     const { palette } = createTheme();
     const { augmentColor } = palette;
@@ -20,18 +19,28 @@ const RegisterFrom = () => {
         },
     });
 
+    const _onHandleChangeUser = (e) => {
+        setUser(e.target.value);
+        console.log(user);
+    }
+
+    const _onHandleChangePass = (e) => {
+        setPassword(e.target.value);
+        console.log(password);
+    }
+
     //Handler Register
     const onHandleRegister = (e) => {
         e.preventDefault();
-        console.log('USER DATA:' + inputUserName.current.value, inputPassword.current.value);
-        if (inputUserName.current.value === '' || inputPassword.current.value === '') {
+        console.log('USER DATA:' + user, password);
+        if (user === '' || password === '') {
             <Snackbar autoHideDuration={6000} >
                 <Alert severity="error" sx={{ width: '100%' }}>
                     No puede haber campos vacios!
                 </Alert>
             </Snackbar>
         } else {
-            fetchRegister(inputUserName.current.value, inputPassword.current.value)
+            fetchRegister(user, password)
                 .then(response => {
                     if (response.status === 200) {
                         <Snackbar autoHideDuration={6000} >
@@ -76,20 +85,20 @@ const RegisterFrom = () => {
                         }}>
 
                         <img src={logo} width="70" height="70" alt="Logo" />
-                        <Typography variant={"h4"} color={"primary"} align={"center"} >Sign Up:</Typography>
+                        <Typography variant={"h4"} color={"primary"} align={"center"} >Registro:</Typography>
                         <TextField
                             margin='normal'
                             type={'text'}
                             variant='outlined'
                             placeholder='Name'
-                            ref={inputUserName}
+                            onChange={_onHandleChangeUser}
                         />
                         <TextField
                             margin='normal'
                             type={'text'}
                             variant='outlined'
                             placeholder='Password'
-                            ref={inputPassword}
+                            onChange={_onHandleChangePass}
                         />
                         <Button
                             variant="contained"
@@ -103,7 +112,7 @@ const RegisterFrom = () => {
 
                             }}
                             onClick={onHandleRegister}>
-                            <Typography variant={"p"} color={"white"} align={"center"}>Sign Up!</Typography>
+                            <Typography variant={"p"} color={"white"} align={"center"}>Registro</Typography>
                         </Button>
                     </Box>
                 </ThemeProvider>

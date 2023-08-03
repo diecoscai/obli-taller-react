@@ -8,16 +8,11 @@ import { createTheme, ThemeProvider, } from '@mui/material/styles';
 import logo from '../../../../logo.png';
 
 const LoginForm = () => {
-    // const [message, setMessage] = useState('');
-    // const [classColor, setClassColor] = useState('');
-    // const [showAlert, setShowAlert] = useState(false);
+    const [user, setUser] = useState('');
+    const [password, setPassword] = useState('');
     const [btnDisabled, setBtnDisabled] = useState(true);
-    const inputUserName = useRef();
-    const inputPassword = useRef();
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const { palette } = createTheme();
     const { augmentColor } = palette;
     const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
@@ -34,9 +29,10 @@ const LoginForm = () => {
     };
 
     const _onHandleLogin = (e) => {
+
         e.preventDefault();
         if (!_isEmptyForm()) {
-            fetchLogin(inputUserName.current.value, inputPassword.current.value)
+            fetchLogin(user, password)
                 .then((userData) => {
                     console.log('Login exitoso');
                     setTimeout(() => {
@@ -53,39 +49,44 @@ const LoginForm = () => {
     };
 
     const _isEmptyForm = () => {
-        return (
-            inputUserName.current.value.length === 0 ||
-            inputPassword.current.value.length === 0
-        );
+        return (user === '' || password === '');
     };
 
-    const _onHandleChange = () => {
-        if (!_isEmptyForm) {
-            setBtnDisabled(false);
-        } else {
-            setBtnDisabled(true);
-        }
-    };
+    const _onHandleChangeUser = (e) => {
+        setUser(e.target.value);
+        console.log(user);
+    }
 
+    const _onHandleChangePass = (e) => {
+        setPassword(e.target.value);
+        console.log(password);
+    }
+    /*
+        const _onHandleChange = (e) => {
+            if (!_isEmptyForm) {
+                setBtnDisabled(false);
+            } else {
+                setBtnDisabled(true);
+            }
+        };
+    */
     return (
         <>
             <ThemeProvider theme={theme}>
-                <Typography variant={"h4"} color={"primary"} align={"center"} >Sign Up:</Typography>
+                <Typography variant={"h4"} color={"primary"} align={"center"} >Login</Typography>
                 <TextField
                     margin='normal'
                     type={'text'}
                     variant='outlined'
                     placeholder='Name'
                     id="txtUser"
-                    ref={inputUserName}
-                    onChange={_onHandleChange} />
+                    onChange={_onHandleChangeUser} />
                 <TextField
                     margin='normal'
                     type={'text'}
                     variant='outlined'
                     placeholder='Password'
-                    ref={inputPassword}
-                    onChange={_onHandleChange} />
+                    onChange={_onHandleChangePass} />
                 <Button
                     variant="contained"
                     color="yellowButton"
@@ -96,8 +97,10 @@ const LoginForm = () => {
                         fontWeight: 'bold',
                         textShadow: '2px 2px 5px #555549',
 
-                    }}>
-                    <Typography variant={"p"} color={"white"} align={"center"}>Sign Up!</Typography>
+                    }}
+                    onClick={_onHandleLogin}
+                >
+                    <Typography variant={"p"} color={"white"} align={"center"}>Login!</Typography>
                 </Button>
             </ThemeProvider >
         </>
