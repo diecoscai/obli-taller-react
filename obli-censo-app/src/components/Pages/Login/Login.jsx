@@ -38,7 +38,7 @@ const Login = () => {
                 <img src={logo} width="70" height="70" alt="Logo" />
                 <LoginForm />
                 <br />
-                <Link to={'/signup'}>No tienes cuenta?</Link>
+                <Link to={'/register'}>No tienes cuenta?</Link>
             </Box >
         </>
     );

@@ -1,6 +1,7 @@
 import './App.css';
 import Login from '../Pages/Login';
 import RegisterForm from '../Pages/Register/RegisterForm';
+import Dashboard from '../Pages/Dashboard/Dashboard';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -19,8 +20,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<RegisterForm />} />
+                <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
-            <RegisterForm />
         </div>
     );
 }
