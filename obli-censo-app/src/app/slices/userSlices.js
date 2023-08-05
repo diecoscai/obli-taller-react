@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 //Estado inicial del slice
 const initialState = {
     userLogged: null,
-    userRegistered: null,
 }
 
 export const userSlice = createSlice({
@@ -13,9 +12,6 @@ export const userSlice = createSlice({
         //Funciones que modifican el estado
         setUserLogged: (state, action) => {
             state.userLogged = action.payload;
-        },
-        setUserRegistered: (state, action) => {
-            state.userRegistered = action.payload;
         },
     }
 });

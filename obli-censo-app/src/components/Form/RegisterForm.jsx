@@ -1,7 +1,7 @@
-import { fetchRegister } from '../../../api/censoAPI'
+import { fetchRegister } from '../../api/censoAPI'
 import { useDispatch } from 'react-redux'
 import { useState, useRef } from 'react';
-import Button from '../../UI/Button/Button'
+import Button from '../../components/UI/Button'
 
 const RegisterFrom = () => {
     //Variables and States
@@ -21,7 +21,8 @@ const RegisterFrom = () => {
             .then(response => {
                 if (response.status === 200) {
                     setMessage('Usuario registrado');
-                    //Hacer dispatch()
+                    //hacer dispatch del usuario
+                    dispatch({ type: 'SET_USER', payload: response.data });
                 }
             })
             .catch(error => {
