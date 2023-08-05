@@ -166,8 +166,8 @@ const fetchGetPerson = async ({ apiKey, idUser }) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      apiKey,
-      idUser
+      apiKey: apiKey,
+      idUser : idUser
     }
   };
   try {
@@ -182,7 +182,7 @@ const fetchGetPerson = async ({ apiKey, idUser }) => {
     }
     return Promise.reject({
       code: response.status,
-      message: 'Ha ocurrio un error'
+      message: 'Ha ocurrido un error'
     });
   } catch (error) {
     return Promise.reject({

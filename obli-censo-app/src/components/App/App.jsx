@@ -2,7 +2,7 @@ import './App.css';
 import Login from '../Pages/Login';
 import RegisterForm from '../Pages/Register/RegisterForm';
 import Dashboard from '../Pages/Dashboard/Dashboard';
-
+import ListadoPersonasCensadas from '../Pages/Dashboard/ListadoPersonasCensadas';
 import { Routes, Route } from 'react-router-dom';
 
 <link
@@ -22,6 +22,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<RegisterForm />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/censados" element={<ListadoPersonasCensadas />} />
             </Routes>
         </div>
     );
