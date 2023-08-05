@@ -22,7 +22,7 @@ const LoginForm = () => {
 
   const _onLogin = ({ apiKey, id }) => {
     dispatch(onLogin({ apiKey, id }));
-    navigate('/dashboard/');
+    navigate('/dashboard');
   };
 
   const _onHandleLogin = (e) => {

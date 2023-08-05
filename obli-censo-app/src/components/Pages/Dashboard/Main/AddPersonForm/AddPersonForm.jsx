@@ -123,7 +123,6 @@ const AddPersonForm = () => {
         .then((response) => {
           console.log(response);
           // dispatch(onAddPerson(newPerson));
-          <Alert severity="success">Persona censada con exito!</Alert>;
         })
         .catch((e) => {
           console.error(e);
