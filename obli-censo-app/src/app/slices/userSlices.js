@@ -1,33 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit';
-import {
-    getItemFromLocalSotrage,
-    removeUserFromLocalStorage,
-    setUserToLocalStorage,
-} from '../../utils/storage';
+import { createSlice } from "@reduxjs/toolkit";
 
 //Estado inicial del slice
 const initialState = {
-    userLogged: getItemFromLocalSotrage('censoAppUser'),
-};
+    userLogged: null,
+}
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
         //Funciones que modifican el estado
-        onLogin: (state, action) => {
-            setUserToLocalStorage(action.payload);
+        setUserLogged: (state, action) => {
             state.userLogged = action.payload;
         },
-        onLogout: (state) => {
-            removeUserFromLocalStorage();
-            state.userLogged = null;
-        },
-        setUserRegistered: (state, action) => {
-            state.userRegistered = action.payload;
-        },
-    },
+    }
 });
 
-export const { onLogin, onLogout, setUserRegistered } = userSlice.actions;
+export const { setUserLogged, setUserRegistered } = userSlice.actions;
 export default userSlice.reducer;
