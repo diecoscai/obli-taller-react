@@ -109,7 +109,6 @@ const RegisterFrom = () => {
                                 boxShadow: '2px 2px 5px #ccc',
                                 fontWeight: 'bold',
                                 textShadow: '2px 2px 5px #555549',
-
                             }}
                             onClick={onHandleRegister}>
                             <Typography variant={"p"} color={"white"} align={"center"}>Registro</Typography>
