@@ -68,7 +68,7 @@ const fetchRegister = async (user, password) => {
   }
 };
 
-const fetchStates = async (apiKey, idUser) => {
+const fetchDeptos = async ({ apiKey, idUser }) => {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -82,6 +82,7 @@ const fetchStates = async (apiKey, idUser) => {
     if (response.status === 200) {
       return response.json().then((data) => {
         const { departamentos } = data;
+
         return Promise.resolve({
           departamentos
         });
@@ -195,9 +196,9 @@ const fetchAddPerson = async ({
   apiKey,
   idUser,
   name,
-  idState,
+  idDepto,
   idCity,
-  birthDate,
+  birthday,
   idOccupation
 }) => {
   const requestOptions = {
@@ -210,9 +211,9 @@ const fetchAddPerson = async ({
     body: JSON.stringify({
       idUsuario: idUser,
       nombre: name,
-      departamento: idState,
+      departamento: idDepto,
       ciudad: idCity,
-      fechaNacimiento: birthDate,
+      fechaNacimiento: birthday,
       ocupacion: idOccupation
     })
   };
@@ -268,7 +269,7 @@ const fetchDeletePerson = async ({ apiKey, idUser, idCenso }) => {
   }
 };
 
-const fetchGetOccupations = async (apiKey, idUser) => {
+const fetchGetOccupations = async ({ apiKey, idUser }) => {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -332,7 +333,7 @@ const fetchTotalRegistered = async (apiKey, idUser) => {
 export {
   fetchLogin,
   fetchRegister,
-  fetchStates,
+  fetchDeptos,
   fetchCitiesForState,
   fetchAllCities,
   fetchGetPerson,
