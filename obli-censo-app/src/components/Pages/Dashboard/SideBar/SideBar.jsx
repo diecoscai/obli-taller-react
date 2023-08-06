@@ -20,11 +20,14 @@ import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ListIcon from '@mui/icons-material/List';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-import { Link } from 'react-router-dom';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Link, Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { onLogout } from '../../../../app/slices/userSlices';
+import { removeUserFromLocalStorage } from '../../../../utils/storage';
+
 
 const drawerWidth = 240;
-
 const openedMixin = (theme) => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -93,6 +96,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const dispatch = useDispatch();
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -101,6 +105,13 @@ export default function MiniDrawer() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const handleLogOut = (e) => {
+        e.preventDefault();
+        removeUserFromLocalStorage();
+        dispatch(onLogout());
+        return <Navigate to="/login" />;
+    }
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -113,7 +124,7 @@ export default function MiniDrawer() {
                     borderRadius: '0 0 4px 4px',
                 }}
             >
-                <Toolbar >
+                <Toolbar>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -139,6 +150,27 @@ export default function MiniDrawer() {
                     >
                         Censo App
                     </Typography>
+
+                    <ListItemButton
+                        onClick={handleLogOut}
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            marginLeft: 'auto',
+                            justifyContent: 'flex-end',
+                            maxWidth: '10%',
+                            ...(open && { display: 'none' }),
+                            fontWeight: 'bold',
+                            textShadow: '2px 2px 6px #181717c0',
+                        }}
+                    >
+                        <LogoutIcon
+                            sx={{
+                                marginRight: 2,
+                            }}
+                        />
+                        Log Out
+                    </ListItemButton>
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open} >
@@ -153,7 +185,7 @@ export default function MiniDrawer() {
                         <ListItem key={text} disablePadding sx={{ display: 'block' }}>
                             <ListItemButton
                                 component={Link}
-                                to={index === 0 ? '/dashboard' : index === 1 ? '/dashboard/add-censados' : index === 2 ? '/dashboard/list-censados' : null}
+                                to={index === 0 ? '/dashboard' : index === 1 ? '/dashboard/add-censado' : index === 2 ? '/dashboard/list-censados' : null}
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',
