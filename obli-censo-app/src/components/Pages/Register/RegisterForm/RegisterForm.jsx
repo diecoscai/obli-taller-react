@@ -1,7 +1,6 @@
 import { Box, Typography, TextField, Button, Snackbar, Alert } from '@mui/material'
 import { createTheme, ThemeProvider, } from '@mui/material/styles';
 import { fetchRegister } from '../../../../api/censoAPI'
-import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react';
 import logo from '../../../../logo.png';
 

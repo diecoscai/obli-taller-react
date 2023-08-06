@@ -21,6 +21,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ListIcon from '@mui/icons-material/List';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -148,13 +149,18 @@ export default function MiniDrawer() {
                 </DrawerHeader>
                 <Divider />
                 <List >
-                    {['Dashboard', 'Agregar Persona', 'Listado de Personas', 'Censados Totales'].map((text, index) => (
+                    {['Dashboard', 'Agregar Persona', 'Listado de Personas'].map((text, index) => (
                         <ListItem key={text} disablePadding sx={{ display: 'block' }}>
                             <ListItemButton
+                                component={Link}
+                                to={index === 0 ? '/dashboard' : index === 1 ? '/dashboard/add-censados' : index === 2 ? '/dashboard/list-censados' : null}
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',
                                     px: 2.5,
+                                    '&:focus': {
+                                        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                                    },
                                 }}
                             >
                                 <ListItemIcon
@@ -165,7 +171,7 @@ export default function MiniDrawer() {
                                     }}
                                 >
                                     {
-                                        index === 0 ? <DashboardIcon /> : index === 1 ? <PersonAddIcon /> : index === 2 ? <ListIcon /> : <AssignmentIndIcon />}
+                                        index === 0 ? <DashboardIcon /> : index === 1 ? <PersonAddIcon /> : index === 2 ? <ListIcon /> : null}
                                 </ListItemIcon>
                                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>

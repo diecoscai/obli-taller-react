@@ -14,8 +14,8 @@ export const personSlice = createSlice({
     },
     onDeletePerson: (state, action) => {
       const { payload } = action;
-      const newPersonList = state.personList.filter((person) => person.id !== payload);
-      state.personList = newPersonList;
+      const newPersonArr = state.personArr.filter((person) => person.id !== payload);
+      state.personArr = newPersonArr;
     },
     onAddPerson: (state, action) => {
       const { payload } = action;

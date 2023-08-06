@@ -4,8 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import SideBar from './SideBar';
 import Main from './Main';
 
-//import { onInitialLoad } from '../../../app/slices/toDosSlice'
-
 const Dashboard = () => {
   const userLogged = useSelector((state) => state.user.userLogged);
 

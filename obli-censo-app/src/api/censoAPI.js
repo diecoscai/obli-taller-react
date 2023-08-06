@@ -230,7 +230,7 @@ const fetchAddPerson = async ({
     }
     return Promise.reject({
       code: response.status,
-      message: 'Ha ocurrio un error'
+      message: 'Ha ocurrido un error'
     });
   } catch (error) {
     return Promise.reject({
@@ -249,10 +249,13 @@ const fetchDeletePerson = async ({ apiKey, idUser, idCenso }) => {
     }
   };
   try {
+    console.log(`${BASE_URL}/personas.php?idCenso=${idCenso}`)
     const response = await fetch(`${BASE_URL}/personas.php?idCenso=${idCenso}`, requestOptions);
+    console.log(response)
     if (response.status === 200) {
       return response.json().then((data) => {
         const { mensaje } = data;
+        console.log(mensaje)
         return Promise.resolve({
           mensaje
         });
@@ -260,7 +263,7 @@ const fetchDeletePerson = async ({ apiKey, idUser, idCenso }) => {
     }
     return Promise.reject({
       code: response.status,
-      message: 'Ha ocurrio un error'
+      message: 'Ha ocurrido un error'
     });
   } catch (error) {
     return Promise.reject({
@@ -290,7 +293,7 @@ const fetchGetOccupations = async ({ apiKey, idUser }) => {
     }
     return Promise.reject({
       code: response.status,
-      message: 'Ha ocurrio un error'
+      message: 'Ha ocurrido un error'
     });
   } catch (error) {
     return Promise.reject({
