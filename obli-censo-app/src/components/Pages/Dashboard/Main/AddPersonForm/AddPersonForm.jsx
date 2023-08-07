@@ -65,9 +65,7 @@ const AddPersonForm = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [depto]);
 
-  useEffect(() => {
     fetchCitiesForState({ idDepto: depto, apiKey: userLogged.apiKey, idUser: userLogged.id })
       .then((response) => {
         dispatch(getCities(response));
@@ -85,7 +83,7 @@ const AddPersonForm = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [occupations]);
 
   const _onHandleChangeName = (e) => {
     setName(e.target.value);
@@ -118,7 +116,6 @@ const AddPersonForm = () => {
         birthday: birthday,
         idOccupation: occupation
       };
-      console.log(newPerson);
       fetchAddPerson(newPerson)
         .then((response) => {
           console.log(response);
@@ -128,7 +125,6 @@ const AddPersonForm = () => {
           console.error(e);
         });
     } else {
-      // TODO: mostrar mensaje de error
       alert('Error!!');
     }
   };

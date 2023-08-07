@@ -1,9 +1,9 @@
-import AddPersonForm from './AddPersonForm';
+import Home from './Home';
 
 const Main = () => {
   return (
     <main>
-      <AddPersonForm />
+      <Home />
     </main>
   );
 };
