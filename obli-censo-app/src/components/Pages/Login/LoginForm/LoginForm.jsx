@@ -16,7 +16,7 @@ const LoginForm = () => {
   const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
   const theme = createTheme({
     palette: {
-      yellowButton: createColor('#FFD25E')
+      yellowButton: createColor('#2c3d5e')
     }
   });
 
@@ -60,7 +60,7 @@ const LoginForm = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Typography variant={'h4'} color={'primary'} align={'center'}>
+        <Typography variant={'h4'} color={'#2c3d5e'} align={'center'}>
           Login
         </Typography>
         <TextField
