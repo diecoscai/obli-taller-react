@@ -54,7 +54,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
 }));
 
@@ -148,7 +147,7 @@ export default function MiniDrawer() {
                             textShadow: '2px 2px 6px #181717c0',
                         }}
                     >
-                        Censo App
+                        X-Censo
                     </Typography>
                     <ListItemButton
                         onClick={handleLogOut}

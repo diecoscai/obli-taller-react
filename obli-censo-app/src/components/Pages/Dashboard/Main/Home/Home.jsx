@@ -1,7 +1,8 @@
 import React from 'react';
-import { Grid } from '@mui/material';
 import Charts from './Charts';
 import Map from './Map/Map';
+import CountdownTimer from './CountdownTimer';
+import { Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { fetchGetPerson, fetchGetOccupations, fetchDeptos } from '../../../../../api/censoAPI';
@@ -9,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { onGetPerson } from '../../../../../app/slices/personSlice';
 import { getOccupations } from '../../../../../app/slices/occupationSlice';
 import { getDeptos } from '../../../../../app/slices/deptoSlice';
+import { typography } from '@mui/system';
 
 const Home = () => {
   const userLogged = useSelector((state) => state.user.userLogged);
@@ -82,8 +84,19 @@ const Home = () => {
     }
   }, [people, occupations, deptos]);
 
+  const typographyStyle = {
+    color: '#2c3d5e',
+    align: 'center',
+    textShadow: '2px 2px 5px #555549',
+    fontWeight: 'bold',
+    padding: '10px',
+    marginBottom: '20px',
+  };
+
   return (
     <div>
+      <Typography variant={'h3'} style={typographyStyle}> Bienvenido a XCenso! </Typography>
+      <CountdownTimer />
       <Grid
         container
         spacing={3}
@@ -94,7 +107,8 @@ const Home = () => {
           margin: 'auto',
           marginTop: '10vh',
           borderRadius: '10px',
-          boxShadow: '0 0 10px rgba(0,0,0,0.5)'
+          boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+          padding: '2%'
         }}>
         <Grid item xs={12}>
           <Charts

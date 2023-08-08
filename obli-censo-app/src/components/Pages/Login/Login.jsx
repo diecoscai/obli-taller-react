@@ -1,10 +1,10 @@
+import './Login.css';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import './Login.css';
+import { Box } from '@mui/material'
 import LoginForm from './LoginForm';
-import logo from '../../../logo.png';
-import { Box} from '@mui/material'
+import xCensoLogo from '../../../xCenso.png';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Login = () => {
         if (user) {
             navigate('/dashboard');
         }
-    }, [user]);
+    }, [user, navigate]);
 
     return (
         <>
@@ -34,7 +34,7 @@ const Login = () => {
                         boxShadow: '5px 5px 10px #aaa'
                     }
                 }}>
-                <img src={logo} width="70" height="70" alt="Logo" />
+                <img src={xCensoLogo} width="70" height="70" alt="Logo" />
                 <LoginForm />
                 <br />
                 <Link to={'/register'}>No tienes cuenta?</Link>

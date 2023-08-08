@@ -1,4 +1,4 @@
-import { Box, Typography, TextField, Button, Snackbar, Alert } from '@mui/material'
+import { Box, Typography, TextField, Button } from '@mui/material'
 import { createTheme, ThemeProvider, } from '@mui/material/styles';
 import { fetchRegister } from '../../../../api/censoAPI'
 import { useState } from 'react';
@@ -27,7 +27,6 @@ const RegisterFrom = () => {
     //Handler Register
     const onHandleRegister = (e) => {
         e.preventDefault();
-        console.log('USER DATA:' + user, password);
         if (user === '' || password === '') {
             setMessage('No pueden haber campos vacios!');
             setError(true);
@@ -47,25 +46,14 @@ const RegisterFrom = () => {
                         setError(true);
                     }
                 });
-                setError(false);
+            setError(false);
         }
     }
 
     return (
         <ThemeProvider theme={theme}>
             <Box>
-                {error ? <CustomizedAlert message={message} /> : null}
-                {message && (
-                    <Typography
-                        variant="body1"
-                        color={error ? 'error' : 'success'}
-                        align="center"
-                        sx={{ marginBottom: 10 }}
-                    >
-                        {message}
-                    </Typography>
-                )}
-                
+                {error && <CustomizedAlert message={message} /> }
                 <Box
                     display="flex"
                     flexDirection="column"
