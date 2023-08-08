@@ -2,6 +2,7 @@ import React from 'react';
 import Charts from './Charts';
 import Map from './Map/Map';
 import CountdownTimer from './CountdownTimer';
+import TotalCensados from './TotalCensados';
 import { Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
@@ -10,7 +11,6 @@ import { useDispatch } from 'react-redux';
 import { onGetPerson } from '../../../../../app/slices/personSlice';
 import { getOccupations } from '../../../../../app/slices/occupationSlice';
 import { getDeptos } from '../../../../../app/slices/deptoSlice';
-import { typography } from '@mui/system';
 
 const Home = () => {
   const userLogged = useSelector((state) => state.user.userLogged);
@@ -52,10 +52,10 @@ const Home = () => {
           console.log(error);
         });
     }
-  }, []);
+  }, [userLogged, dispatch]);
 
   useEffect(() => {
-    if (people?.length && occupations?.length) {
+    if (people && occupations) {
       const peopleByOccupationsCount = occupations.map(() => 0);
 
       people.forEach((person) => {
@@ -67,21 +67,17 @@ const Home = () => {
       });
 
       setPeopleByOccupation(peopleByOccupationsCount);
-
       setOccupationsName(occupations.map((occupation) => occupation.ocupacion));
 
       const peopleByDeptosCount = deptos.map(() => 0);
-
-      const minDeptoId = deptos.length > 0 ? Math.min(...deptos.map((depto) => depto.id)) : 0;
+      const minDeptoId = Math.min(...deptos.map((departamento) => departamento.id));
 
       people.forEach((person) => {
         peopleByDeptosCount[person.departamento - minDeptoId] += 1;
       });
 
       setPeopleByDeptos(peopleByDeptosCount);
-
       setDeptosName(deptos.map((depto) => depto.nombre));
-      console.log('Es Esto');
     }
   }, [people, occupations, deptos]);
 
@@ -91,16 +87,13 @@ const Home = () => {
     textShadow: '2px 2px 5px #555549',
     fontWeight: 'bold',
     padding: '10px',
-    marginBottom: '20px'
+    marginBottom: '20px',
   };
 
   return (
     <div>
-      <Typography variant={'h3'} style={typographyStyle}>
-        {' '}
-        Bienvenido a XCenso!{' '}
-      </Typography>
-      <CountdownTimer />
+      
+        <Typography variant={'h3'} style={typographyStyle}> Bienvenido a XCenso! </Typography>
       <Grid
         container
         spacing={3}
@@ -114,6 +107,8 @@ const Home = () => {
           boxShadow: '0 0 10px rgba(0,0,0,0.5)',
           padding: '2%'
         }}>
+        <CountdownTimer />
+        <TotalCensados people={people} />
         <Grid item xs={12}>
           <Charts
             peopleByOccupation={peopleByOccupation}

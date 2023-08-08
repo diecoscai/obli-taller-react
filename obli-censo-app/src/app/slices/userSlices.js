@@ -22,9 +22,6 @@ export const userSlice = createSlice({
       removeUserFromLocalStorage();
       state.userLogged = null;
     },
-    setUserRegistered: (state, action) => {
-      state.userRegistered = action.payload;
-    }
   }
 });
 

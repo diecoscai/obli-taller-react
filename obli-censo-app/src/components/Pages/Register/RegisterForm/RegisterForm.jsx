@@ -1,8 +1,9 @@
-import { Box, Typography, TextField, Button } from '@mui/material'
+import { Box, Typography, TextField, Button, Grid } from '@mui/material'
 import { createTheme, ThemeProvider, } from '@mui/material/styles';
 import { fetchRegister } from '../../../../api/censoAPI'
-import { useState } from 'react';
-import logo from '../../../../logo.png';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import xCensoLogo from '../../../../xCenso.png'
 import CustomizedAlert from '../../../UI/CustomizedAlert/CustomizedAlert';
 
 const RegisterFrom = () => {
@@ -20,7 +21,7 @@ const RegisterFrom = () => {
             yellowButton: createColor('#2c3d5e'),
         },
     });
-
+    const navigate = useNavigate();
     const _onHandleChangeUser = (e) => { setUser(e.target.value); }
     const _onHandleChangePass = (e) => { setPassword(e.target.value); }
 
@@ -50,10 +51,15 @@ const RegisterFrom = () => {
         }
     }
 
+    const onHandleBack = e => {
+        e.preventDefault();
+        navigate('/login', { replace: true });
+    }
+
     return (
         <ThemeProvider theme={theme}>
             <Box>
-                {error && <CustomizedAlert message={message} /> }
+                {error && <CustomizedAlert message={message} />}
                 <Box
                     display="flex"
                     flexDirection="column"
@@ -72,8 +78,8 @@ const RegisterFrom = () => {
                         },
                     }}
                 >
-                    <img src={logo} width="70" height="70" alt="Logo" />
-                    <Typography variant={"h4"} color={"primary"} align={"center"} >Registro:</Typography>
+                    <img src={xCensoLogo} width="70" height="70" alt="Logo" />
+                    <Typography variant={"h4"} color={"#2c3d5e"} align={"center"} >Registro:</Typography>
                     <TextField
                         margin='normal'
                         type={'text'}
@@ -88,22 +94,43 @@ const RegisterFrom = () => {
                         placeholder='Password'
                         onChange={_onHandleChangePass}
                     />
-                    <Button
-                        variant="contained"
-                        color="yellowButton"
-                        sx={{
-                            marginTop: 5,
-                            borderRadius: 2,
-                            boxShadow: '2px 2px 5px #ccc',
-                            fontWeight: 'bold',
-                            textShadow: '2px 2px 5px #555549',
-                        }}
-                        onClick={onHandleRegister}
-                    >
-                        <Typography variant="p" color="white" align="center">
-                            Registro
-                        </Typography>
-                    </Button>
+                    <Grid container spacing={2} justifyContent="center" paddingTop={'30px'}>
+                        <Grid item>
+                            <Button
+                                variant="contained"
+                                color="yellowButton"
+                                sx={{
+                                    borderRadius: 2,
+                                    boxShadow: '2px 2px 5px #ccc',
+                                    fontWeight: 'bold',
+                                    textShadow: '2px 2px 5px #555549',
+                                }}
+                                onClick={onHandleRegister}
+                            >
+                                <Typography variant="body1" color="white" align="center">
+                                    Registrar
+                                </Typography>
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button
+                                variant="contained"
+                                color="yellowButton"
+                                sx={{
+                                    borderRadius: 2,
+                                    boxShadow: '2px 2px 5px #ccc',
+                                    fontWeight: 'bold',
+                                    textShadow: '2px 2px 5px #555549',
+                                }}
+                                onClick={onHandleBack}
+                            >
+                                <Typography variant="body1" color="white" align="center">
+                                    Volver
+                                </Typography>
+                            </Button>
+                        </Grid>
+                    </Grid>
+
                 </Box>
             </Box>
         </ThemeProvider >

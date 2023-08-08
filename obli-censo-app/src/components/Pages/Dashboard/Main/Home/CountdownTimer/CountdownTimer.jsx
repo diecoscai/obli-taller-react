@@ -10,15 +10,12 @@ const CountdownTimer = () => {
       setTimeRemaining(calculateTimeRemaining());
     }, 1000);
 
-    return () => {
-      clearInterval(interval);
-    };
+    return () => { clearInterval(interval); };
   }, []);
 
   function calculateTimeRemaining() {
     const now = new Date();
     const difference = targetDate - now;
-
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
     const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
@@ -27,7 +24,7 @@ const CountdownTimer = () => {
   }
 
   const boxStyle = {
-    width: '8%',
+    width: '20%',
     height: '100px',
     margin: '5px',
     padding: '10px',
@@ -37,7 +34,7 @@ const CountdownTimer = () => {
     textAlign: 'center',
     boxShadow: '0px 0px 10px #2c3d5e',
     borderRadius: '50px',
-    padding:'0px'
+    padding: '0px'
   };
 
   const typographyStyle = {
@@ -48,21 +45,21 @@ const CountdownTimer = () => {
 
   return (
     <div>
-      <Typography variant="h5" style={typographyStyle}>
+      <Typography variant="h4" style={typographyStyle}>
         Tiempo restante para el 31 de Agosto
       </Typography>
       <Box display="flex" alignItems="center" justifyContent="center">
         <Paper elevation={0} style={boxStyle}>
           <h3>Dias</h3>
-          <p>{timeRemaining.days}</p>
+          <h3>{timeRemaining.days}</h3>
         </Paper>
         <Paper elevation={0} style={boxStyle}>
           <h3>Horas</h3>
-          <p>{timeRemaining.hours}</p>
+          <h3>{timeRemaining.hours}</h3>
         </Paper>
         <Paper elevation={0} style={boxStyle}>
           <h3>Minutos</h3>
-          <p>{timeRemaining.minutes}</p>
+          <h3>{timeRemaining.minutes}</h3>
         </Paper>
       </Box>
     </div>

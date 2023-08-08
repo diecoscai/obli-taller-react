@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import CustomizedButton from '../../../../UI/CustomizedButton';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import {
     fetchAddPerson,
@@ -16,6 +16,7 @@ import {
     MenuItem,
     Button,
     Grid,
+    Typography,
 } from '@mui/material';
 
 import { getDeptos } from '../../../../../app/slices/deptoSlice';
@@ -165,6 +166,7 @@ const AddPersonForm = () => {
 
     return (
         <>
+            <Typography variant={"h4"} color={"#2c3d5e"} fontWeight={'bold'} textAlign={'center'} >Agregue persona a censar</Typography>
             <form>
                 <Grid
                     maxWidth={1000}
@@ -240,13 +242,9 @@ const AddPersonForm = () => {
                         </FormControl>
                     </Grid>
                 </Grid>
-                <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    onClick={_onHandleAddPerson}>
-                    Agregar Persona
-                </Button>
+                <CustomizedButton onHandleClick={_onHandleAddPerson}  >
+                    <Typography variant={'p'} color={'white'} align={'center'}> Agregar Persona </Typography>
+                </CustomizedButton>
             </form>
         </>
     );

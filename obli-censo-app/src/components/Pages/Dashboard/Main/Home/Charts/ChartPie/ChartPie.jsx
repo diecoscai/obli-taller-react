@@ -1,27 +1,41 @@
+import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { Typography } from '@mui/material';
+import { Typography, CircularProgress } from '@mui/material';
 
 const ChartPie = ({ peopleByOccupation, occupationsName }) => {
-    const data = {
-        series: peopleByOccupation,
-        options: {
-            chart: {
-                type: 'pie',
-            },
-            labels: occupationsName,
-        },
-    };
+    const [loading, setLoading] = useState(true);
+    const [chartData, setChartData] = useState(null);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setChartData({
+                series: peopleByOccupation,
+                options: {
+                    chart: {
+                        type: 'pie',
+                    },
+                    labels: occupationsName,
+                },
+            });
+            setLoading(false);
+        }, 2000);
+    }, [peopleByOccupation, occupationsName]);
+
     return (
         <>
             <Typography variant="h6" component="h6">
                 Personas por ocupación
             </Typography>
-            <ReactApexChart
-                options={data.options}
-                series={data.series}
-                type="pie"
-                height={350}
-            />
+            {loading ? (
+                <CircularProgress /> 
+            ) : (
+                <ReactApexChart
+                    options={chartData.options}
+                    series={chartData.series}
+                    type="pie"
+                    height={350}
+                />
+            )}
         </>
     );
 };

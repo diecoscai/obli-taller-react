@@ -4,6 +4,7 @@ import deptoSlice from './slices/deptoSlice';
 import citySlice from './slices/citySlice';
 import occupationSlice from './slices/occupationSlice';
 import personSlice from './slices/personSlice';
+import totalCensadosSlice from './slices/totalCensadosSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     deptos: deptoSlice,
     cities: citySlice,
     occupations: occupationSlice,
-    personList: personSlice
+    personList: personSlice,
+    totalCensados: totalCensadosSlice
   }
 });
