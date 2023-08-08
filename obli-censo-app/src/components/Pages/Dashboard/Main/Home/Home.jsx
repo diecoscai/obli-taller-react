@@ -70,7 +70,7 @@ const Home = () => {
       setOccupationsName(occupations.map((occupation) => occupation.ocupacion));
 
       const peopleByDeptosCount = deptos.map(() => 0);
-      const minDeptoId = Math.min(...deptos.map((departamento) => departamento.id));
+      const minDeptoId = Math.min(...deptos.map((depto) => depto.id));
 
       people.forEach((person) => {
         peopleByDeptosCount[person.departamento - minDeptoId] += 1;
@@ -87,13 +87,15 @@ const Home = () => {
     textShadow: '2px 2px 5px #555549',
     fontWeight: 'bold',
     padding: '10px',
-    marginBottom: '20px',
+    marginBottom: '20px'
   };
 
   return (
     <div>
-      
-        <Typography variant={'h3'} style={typographyStyle}> Bienvenido a XCenso! </Typography>
+      <Typography variant={'h3'} style={typographyStyle}>
+        {' '}
+        Bienvenido a XCenso!{' '}
+      </Typography>
       <Grid
         container
         spacing={3}

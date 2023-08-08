@@ -10,7 +10,9 @@ const CountdownTimer = () => {
       setTimeRemaining(calculateTimeRemaining());
     }, 1000);
 
-    return () => { clearInterval(interval); };
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   function calculateTimeRemaining() {
@@ -40,7 +42,7 @@ const CountdownTimer = () => {
   const typographyStyle = {
     color: '#2c3d5e',
     fontWeight: 'bold',
-    marginBottom: '10px',
+    marginBottom: '10px'
   };
 
   return (

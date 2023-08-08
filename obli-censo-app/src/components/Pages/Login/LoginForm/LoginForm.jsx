@@ -5,10 +5,13 @@ import { onLogin } from '../../../../app/slices/userSlices';
 import { fetchLogin } from '../../../../api/censoAPI';
 import { Typography, TextField, Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CustomAlert from '../../../UI/CustomAlert';
 
 const LoginForm = () => {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { palette } = createTheme();
@@ -22,6 +25,7 @@ const LoginForm = () => {
 
   const _onLogin = ({ apiKey, id }) => {
     dispatch(onLogin({ apiKey, id }));
+
     navigate('/dashboard', { replace: true });
   };
 
@@ -30,7 +34,11 @@ const LoginForm = () => {
     if (!_isEmptyForm()) {
       fetchLogin(user, password)
         .then((userData) => {
-          console.log('Login exitoso');
+          setShowSuccessAlert(true);
+
+          setTimeout(() => {
+            setShowSuccessAlert(false);
+          }, 3000);
           setTimeout(() => {
             _onLogin(userData);
           }, 2000);
@@ -57,6 +65,7 @@ const LoginForm = () => {
 
   return (
     <>
+      {showSuccessAlert && <CustomAlert message="Login successfully!" color="success" />}{' '}
       <ThemeProvider theme={theme}>
         <Typography variant={'h4'} color={'#2c3d5e'} align={'center'}>
           Login
@@ -71,7 +80,7 @@ const LoginForm = () => {
         />
         <TextField
           margin="normal"
-          type={'text'}
+          type={'password'}
           variant="outlined"
           placeholder="Password"
           onChange={_onHandleChangePass}
