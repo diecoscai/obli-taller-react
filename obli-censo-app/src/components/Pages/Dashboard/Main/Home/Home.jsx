@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import Charts from './Charts';
+import Map from './Map/Map';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { fetchGetPerson, fetchGetOccupations, fetchDeptos } from '../../../../../api/censoAPI';
@@ -78,8 +79,6 @@ const Home = () => {
       setPeopleByDeptos(peopleByDeptosCount);
 
       setDeptosName(deptos.map((depto) => depto.nombre));
-
-      console.log('peopleByDeptos: ', peopleByDeptos);
     }
   }, [people, occupations, deptos]);
 
@@ -104,6 +103,9 @@ const Home = () => {
             peopleByDeptos={peopleByDeptos}
             deptosName={deptosName}
           />
+        </Grid>
+        <Grid item xs={12}>
+          <Map departments={deptos} peopleByDeptos={peopleByDeptos} />
         </Grid>
       </Grid>
     </div>
