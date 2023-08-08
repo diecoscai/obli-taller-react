@@ -1,7 +1,7 @@
 import './App.css';
 import Login from '../Pages/Login/Login';
 import RegisterForm from '../Pages/Register/RegisterForm';
-import Dashboard from '../Pages/Dashboard/Dashboard';
+import Home from '../Pages/Dashboard/Main/Home';
 import AddPersonForm from '../Pages/Dashboard/Main/AddPersonForm';
 import ListadoPersonasCensadas from '../Pages/Dashboard/Main/ListadoPersonasCensadas';
 import PrivateRoute from '../Pages/PrivateRoute.jsx';
@@ -22,20 +22,19 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route
-          path='/dashboard'
+          path="/dashboard"
           element={
-            <PrivateRoute redirectTo='/login'>
+            <PrivateRoute redirectTo="/login">
               <Layout />
             </PrivateRoute>
-          }
-        >
-          <Route path='' element={<Dashboard />} />
-          <Route path='add-censado' element={<AddPersonForm />} />
-          <Route path='list-censados' element={<ListadoPersonasCensadas />} />
+          }>
+          <Route path="" element={<Home />} />
+          <Route path="add-censado" element={<AddPersonForm />} />
+          <Route path="list-censados" element={<ListadoPersonasCensadas />} />
         </Route>
-        <Route path='*' element={<Dashboard />} />
+        <Route path="*" element={<Home />} />
       </Routes>
-    </div >
+    </div>
   );
 }
 
