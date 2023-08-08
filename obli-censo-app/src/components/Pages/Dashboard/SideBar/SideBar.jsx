@@ -150,7 +150,6 @@ export default function MiniDrawer() {
                     >
                         Censo App
                     </Typography>
-
                     <ListItemButton
                         onClick={handleLogOut}
                         sx={{

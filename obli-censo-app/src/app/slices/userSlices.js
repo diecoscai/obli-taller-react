@@ -15,6 +15,7 @@ export const userSlice = createSlice({
   reducers: {
     //Funciones que modifican el estado
     onLogin: (state, action) => {
+      state.userLogged = action.payload;
       setUserToLocalStorage(action.payload);
     },
     onLogout: (state) => {

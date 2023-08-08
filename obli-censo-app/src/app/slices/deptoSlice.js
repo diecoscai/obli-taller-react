@@ -11,6 +11,7 @@ export const deptoSlice = createSlice({
   reducers: {
     getDeptos: (state, action) => {
       state.deptoList = action.payload;
+      console.log("deptoSlice: ", state.deptoList)
     }
   }
 });

@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom"
 
 const PrivateRoute = ({ children, redirectTo }) => {
     const userLogged = useSelector((state) => state.user.userLogged);
+    console.log(userLogged);
     if (userLogged) {
         return children
     } else {

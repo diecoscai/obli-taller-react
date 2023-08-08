@@ -13,7 +13,7 @@ const Login = () => {
         if (user) {
             navigate('/dashboard');
         }
-    }, [user, navigate]);
+    }, [user]);
 
     return (
         <>
