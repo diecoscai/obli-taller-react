@@ -52,10 +52,10 @@ const Home = () => {
           console.log(error);
         });
     }
-  }, [userLogged, dispatch]);
+  }, []);
 
   useEffect(() => {
-    if (people && occupations) {
+    if (people?.length && occupations?.length) {
       const peopleByOccupationsCount = occupations.map(() => 0);
 
       people.forEach((person) => {
@@ -72,7 +72,7 @@ const Home = () => {
 
       const peopleByDeptosCount = deptos.map(() => 0);
 
-      const minDeptoId = Math.min(...deptos.map((departamento) => departamento.id));
+      const minDeptoId = deptos.length > 0 ? Math.min(...deptos.map((depto) => depto.id)) : 0;
 
       people.forEach((person) => {
         peopleByDeptosCount[person.departamento - minDeptoId] += 1;
@@ -81,6 +81,7 @@ const Home = () => {
       setPeopleByDeptos(peopleByDeptosCount);
 
       setDeptosName(deptos.map((depto) => depto.nombre));
+      console.log('Es Esto');
     }
   }, [people, occupations, deptos]);
 
@@ -90,12 +91,15 @@ const Home = () => {
     textShadow: '2px 2px 5px #555549',
     fontWeight: 'bold',
     padding: '10px',
-    marginBottom: '20px',
+    marginBottom: '20px'
   };
 
   return (
     <div>
-      <Typography variant={'h3'} style={typographyStyle}> Bienvenido a XCenso! </Typography>
+      <Typography variant={'h3'} style={typographyStyle}>
+        {' '}
+        Bienvenido a XCenso!{' '}
+      </Typography>
       <CountdownTimer />
       <Grid
         container

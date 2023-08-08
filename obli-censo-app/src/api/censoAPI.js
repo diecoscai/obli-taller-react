@@ -167,8 +167,8 @@ const fetchGetPerson = async ({ apiKey, idUser }) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      apiKey: apiKey,
-      idUser : idUser
+      'apiKey': apiKey,
+      'idUser': idUser
     }
   };
   try {
@@ -249,13 +249,10 @@ const fetchDeletePerson = async ({ apiKey, idUser, idCenso }) => {
     }
   };
   try {
-    console.log(`${BASE_URL}/personas.php?idCenso=${idCenso}`)
     const response = await fetch(`${BASE_URL}/personas.php?idCenso=${idCenso}`, requestOptions);
-    console.log(response)
     if (response.status === 200) {
       return response.json().then((data) => {
         const { mensaje } = data;
-        console.log(mensaje)
         return Promise.resolve({
           mensaje
         });

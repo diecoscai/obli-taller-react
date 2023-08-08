@@ -49,12 +49,10 @@ const LoginForm = () => {
 
   const _onHandleChangeUser = (e) => {
     setUser(e.target.value);
-    console.log(user);
   };
 
   const _onHandleChangePass = (e) => {
     setPassword(e.target.value);
-    console.log(password);
   };
 
   return (

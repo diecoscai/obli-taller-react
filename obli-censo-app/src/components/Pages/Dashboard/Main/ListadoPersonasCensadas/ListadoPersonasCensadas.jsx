@@ -12,7 +12,6 @@ const ListadoPersonasCensadas = () => {
     if (userLogged) {
       fetchGetPerson({ apiKey: userLogged.apiKey, idUser: userLogged.id })
         .then((response) => {
-          console.log(response.personas);
           dispatch(onGetPerson(response.personas));
         })
         .catch((error) => {

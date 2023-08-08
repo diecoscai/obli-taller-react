@@ -10,7 +10,6 @@ export const personSlice = createSlice({
   reducers: {
     onGetPerson: (state, action) => {
       state.personArr = action.payload;
-      console.log(state.personArr);
     },
     onDeletePerson: (state, action) => {
       const { payload } = action;
